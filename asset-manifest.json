@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ExamenesMicrosoft/static/css/main.073c9b0a.css",
+    "main.js": "/ExamenesMicrosoft/static/js/main.cdb22e07.js",
+    "static/js/787.02a074b5.chunk.js": "/ExamenesMicrosoft/static/js/787.02a074b5.chunk.js",
+    "index.html": "/ExamenesMicrosoft/index.html",
+    "main.073c9b0a.css.map": "/ExamenesMicrosoft/static/css/main.073c9b0a.css.map",
+    "main.cdb22e07.js.map": "/ExamenesMicrosoft/static/js/main.cdb22e07.js.map",
+    "787.02a074b5.chunk.js.map": "/ExamenesMicrosoft/static/js/787.02a074b5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.cdb22e07.js"
+  ]
+}

@@ -1,20 +1,17 @@
-// src/components/Inicio.js
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Inicio({ onLogout, onExamSelection }) {
+function Index() {
   return (
-    <div>
-      <h1>Bienvenido</h1>
-      <button onClick={onExamSelection}>Hacer examen</button>
-      <button>Practicar</button>
-      <button>Material de estudio</button>
-      <button>Resultados de test</button>
-      <button>Estadísticas</button>
-      <button>Perfil</button>
-      <button>Ayuda y soporte</button>
-      <button onClick={onLogout}>Cerrar sesión</button>
+    <div className="text-center">
+      <h1 className="text-primary">Examenes Microsoft</h1>
+      <h2 className="text-secondary small">Aplicación Open Source para practicar diferentes exámenes de certificación</h2>
+      <div className="d-flex flex-column my-5">
+        <Link to={'/IA900'} className="btn btn-primary m-2">Examen AI-900: Microsoft Azure AI Fundamentals</Link>
+        <button className="btn btn-primary m-2" disabled>Examen AZ-900: Microsoft Azure Fundamentals</button>
+      </div>
     </div>
   );
 }
 
-export default Inicio;
+export default Index;

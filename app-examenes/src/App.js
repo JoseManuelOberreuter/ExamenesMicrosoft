@@ -7,7 +7,7 @@ import IA900 from './components/IA900';
 function App() {
   return (
     <Router>
-      <div className="App d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+      <div className="App d-flex justify-content-center align-items-center" style={{ height: "100vh", width: "75vh", margin: "0 auto" }}>
         <Routes>
 
           <Route path="/ExamenesMicrosoft" element={<Index />} />          

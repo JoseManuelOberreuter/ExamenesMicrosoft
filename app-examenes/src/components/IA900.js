@@ -31,6 +31,7 @@ function IA900() {
   const [respuestasCorrectas, setRespuestasCorrectas] = useState(0);
   const [respuestasUsuario, setRespuestasUsuario] = useState([]);
   const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
+  const [mostrarRevision, setMostrarRevision] = useState(false);
 
   const iniciarExamen = () => {
     setEstadoExamen("enCurso");
@@ -61,6 +62,11 @@ function IA900() {
     setRespuestasCorrectas(0);
     setRespuestasUsuario([]);
     setOpcionSeleccionada(null);
+    setMostrarRevision(false);
+  };
+
+  const toggleMostrarRevision = () => {
+    setMostrarRevision(!mostrarRevision);
   };
 
   const renderContenido = () => {
@@ -81,7 +87,7 @@ function IA900() {
           <div>
             <h3>{preguntaActual.pregunta}</h3>
             {preguntaActual.opciones.map((opcion, index) => (
-              <div key={index} className="form-check" style={{ width: '200px', margin: '0 auto'}}>
+              <div key={index} className="form-check" style={{ width: '200px', margin: '0 auto' }}>
                 <input
                   type="radio"
                   name="respuesta"
@@ -109,55 +115,55 @@ function IA900() {
             </button>
           </div>
         );
-case "finalizado":
-  return (
-    <div className="text-center" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
-      <h1 className="text-primary">Examen finalizado</h1>
-      <h5 className="text-success my-5">Preguntas correctas: {respuestasCorrectas} de {preguntas.length}</h5>
+      case "finalizado":
+        return (
+          <div className="text-center" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+            <h1 className="text-primary">Examen finalizado</h1>
+            <h5 className="text-success my-5">Preguntas correctas: {respuestasCorrectas} de {preguntas.length}</h5>
 
-      <div className="d-flex flex-column mb-5" style={{ width: '250px', margin: '0 auto' }}>
-        <Link to="/ExamenesMicrosoft" className="btn btn-primary m-2">
-          Ir al inicio
-        </Link>
-        <button onClick={reiniciarExamen} className="btn btn-primary m-2">
-          Reiniciar Examen
-        </button>
-        <button  className="btn btn-primary m-2">
-          Revisar preguntas
-        </button>
-      </div>
+            <div className="d-flex flex-column mb-5" style={{ width: '250px', margin: '0 auto' }}>
+              <Link to="/ExamenesMicrosoft" className="btn btn-primary m-2">
+                Ir al inicio
+              </Link>
+              <button onClick={reiniciarExamen} className="btn btn-primary m-2">
+                Reiniciar Examen
+              </button>
+              <button className="btn btn-primary m-2" onClick={toggleMostrarRevision}>
+                Revisar preguntas
+              </button>
+            </div>
 
-      {/* <div className="mt-4">
-        <h3 className="text-primary">Revision de preguntas:</h3>
-
-        {respuestasUsuario.map((respuesta, index) => (
-          <div key={index} className="mb-3">
-            <p>Pregunta {index + 1}: {respuesta.pregunta.pregunta}</p>
-            {respuesta.pregunta.opciones.map((opcion, opcionIndex) => (
-              <div key={opcionIndex} className="form-check" style={{ width: '200px', margin: '0 auto' }}>
-                <label
-                  htmlFor={`opcion${opcionIndex}`}
-                  style={{ width: '100%' }}
-                  className={`form-check-label px-3 
-                  ${
-                    opcion === respuesta.pregunta.respuesta
-                      ? 'bg-success text-white'
-                      : opcion === respuesta.seleccionada
-                        ? 'bg-danger text-white'
-                        : ''
-                  }`}
-                >
-                  {opcion}
-                </label>
+            {mostrarRevision && (
+              <div className="mt-4">
+                <h3 className="text-primary">Revision de preguntas:</h3>
+                {respuestasUsuario.map((respuesta, index) => (
+                  <div key={index} className="mb-3">
+                    <p>Pregunta {index + 1}: {respuesta.pregunta.pregunta}</p>
+                    {respuesta.pregunta.opciones.map((opcion, opcionIndex) => (
+                      <div key={opcionIndex} className="form-check" style={{ width: '200px', margin: '0 auto' }}>
+                        <label
+                          htmlFor={`opcion${opcionIndex}`}
+                          style={{ width: '100%' }}
+                          className={`form-check-label px-3 
+                          ${
+                            opcion === respuesta.pregunta.respuesta
+                              ? 'bg-success text-white'
+                              : opcion === respuesta.seleccionada
+                                ? 'bg-danger text-white'
+                                : ''
+                          }`}
+                        >
+                          {opcion}
+                        </label>
+                      </div>
+                    ))}
+                    <p>Explicación: {respuesta.pregunta.explicacion}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-            <p>Explicación: {respuesta.pregunta.explicacion}</p>
+            )}
           </div>
-        ))}
-      </div> */}
-    </div>
-  );
-                
+        );
       default:
         return null;
     }

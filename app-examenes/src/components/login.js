@@ -1,34 +1,36 @@
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-export function Login(setUser) {
+export function Login() {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
         
         if (user == "" || password == ""){
             setError(true)
-            return(
-                <>
-                
-                </>
-            )
+            return
         }
         else {
             setError(false)
 
-            setUser([user])
+            localStorage.setItem('username', user); 
+
+            navigate('/Home');
+
         }
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className='text-center'>
             <h1>Login</h1>
 
-            <FormGroup>
+            <FormGroup >
                 <Label for="username">Username</Label>
                 <Input 
                     value={user}
@@ -54,7 +56,7 @@ export function Login(setUser) {
                 />
             </FormGroup>
 
-            <Button color="primary">Login</Button>
+            <Button color="primary" style={{width: '210px'}}>Login</Button>
 
             {error && <p className='text-danger'>Campos Obligatorios</p>}
         </Form>
